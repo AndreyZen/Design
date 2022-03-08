@@ -1,4 +1,5 @@
 ﻿using Design.Classes;
+using Design.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,28 +25,11 @@ namespace Design
         public MainWindow()
         {
             InitializeComponent();
-            List<Supplier> suppliers = new List<Supplier>();
-            suppliers.Add(new Supplier
-            {
-                price = 14877207.31F,
-                amount = "Количество не указано",
-                date_publish = "28.02.2022 12:28",
-                company = "ООО САЛАИР",
-                inn = "7715857460",
-                ogrn = "1117746211197",
-                kpp = "770201001",
-                okpo = "90648710",
-                register_date = "22 марта 2011 года",
-                rating = 342,
-                address = "129110, г. Москва, ул. Щепкина, д. 42, стр. 2А, эт/пом/ком 8/1/1",
-                kapital = "1 000 000 руб.",
-                fin_info = "Выручка:выросла до5,5 млрд руб.34%",
-                advantages = "Долгое время работы; Большой уставный капитал; Не входит в реестр недобросовестных поставщиков; Нет связей с дисквалифицированными лицами; Нет массовых руководителей и учредителей; Нет сообщений о банкротстве; Прибыль в прошлом отчетном периоде; Уплачены налоги за прошлый отчетный период; Нет долгов по исполнительным производствам; Высокая среднесписочная численность работников;",
-                phone = null,
-                email = "koreneva7@mail.ru",
-                web_site = null
-            });
-            LvItems.ItemsSource = suppliers;
+
+            AppData.MainFrame = MainFrame;
+            AppData.MainFrame.Navigate(new MainPage());
+
+            
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)
@@ -55,8 +39,7 @@ namespace Design
 
         private void ListView_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ListViewItem item = (ListViewItem)sender;
-            DragDrop.DoDragDrop(item, item.DataContext, DragDropEffects.Move);
+
         }
 
         private void ListView_Drop(object sender, DragEventArgs e)

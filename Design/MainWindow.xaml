@@ -12,119 +12,57 @@
     <Window.Resources>
         <Style x:Key="LvItem" TargetType="{x:Type ListViewItem}">
             <EventSetter Event="MouseDown" Handler="ListView_MouseDown"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <Button Grid.Column="0" Grid.Row="0">
+                                <Grid MaxHeight="9" MaxWidth="9">
+                                    <Path
+                                                    Stroke="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"
+                                                    StrokeThickness="1"
+                                                    Stretch="None"
+                                                    RenderOptions.EdgeMode="Aliased"
+                                                    Data="M0,8 H8 M0,7 H8 M0,6 H8"
+                                                    />
+                                </Grid>
+                            </Button>
+                            <Button Grid.Column="0" Grid.Row="1">
+                                <Grid MaxHeight="9" MaxWidth="9">
+                                    <Path
+                                                    Stroke="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"
+                                                    StrokeThickness="1"
+                                                    Stretch="None"
+                                                    RenderOptions.EdgeMode="Aliased"
+                                                    Data="M0,8 H8 M0,7 H8 M0,6 H8"
+                                                    />
+                                </Grid>
+                            </Button>
+
+                            <ContentPresenter Grid.Column="1" Grid.Row="1"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <DockPanel
-            Margin="10"
-            Height="150"
-            >
-            <DockPanel.Style>
-                <Style TargetType="{x:Type DockPanel}">
-                    <Style.Triggers>
-                        <EventTrigger RoutedEvent="Loaded">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0.7"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="GotFocus">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetProperty="Height" Duration="0:0:0.5" To="200"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="LostFocus">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetProperty="Height" Duration="0:0:0.5" From="150" To="25"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </Style.Triggers>
-                </Style>
-            </DockPanel.Style>
-        <TextBox Grid.Row="0"
-                 Tag="Поиск: "
-                 Style="{StaticResource placeHolder}" 
-                 BorderBrush="{StaticResource VS2012WindowBorderBrushInactive}"
-                 FontSize="18"
-                 DockPanel.Dock="Top">
-            <TextBox.Background>
-                <SolidColorBrush Color="#EFEFF2" Opacity="0.7"/>
-            </TextBox.Background>
-        </TextBox>
-
-            <ListView FontSize="18" Margin="0 10 0 0" Foreground="DimGray" Drop="ListView_Drop" AllowDrop="True" >
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.Background>
-                    <SolidColorBrush Color="#EFEFF2" Opacity="0.7"/>
-                </ListView.Background>
-                    <ListViewItem Style="{StaticResource LvItem}">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Цена: "/>
-                        <TextBox Tag="Цена от: "  Width="150"/>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem MouseDown="ListView_MouseDown" >
-                    <TextBlock Text="Дата регистрации"/>
-                </ListViewItem>
-                <ListViewItem MouseDown="ListView_MouseDown" >
-                    <TextBlock Text="Рейтинг"/>
-                </ListViewItem>
-                <ListViewItem MouseLeftButtonDown="ListView_MouseDown">
-                    <TextBlock Text="Выручка"/>
-                </ListViewItem>
-                <ListViewItem MouseDown="ListView_MouseDown" >
-                    <TextBlock Text="Плюсы" MouseDown="ListView_MouseDown" />
-                </ListViewItem>
-                <ListViewItem MouseDown="ListView_MouseDown" >
-                    <TextBlock Text="Недостатки"/>
-                </ListViewItem>
-                
-            </ListView>
-        </DockPanel>
-
-        <ListView Grid.Row="1"
-                  Margin="10 0"
-                  Name="LvItems">
-            <ListView.Background>
-                <SolidColorBrush Color="#EFEFF2" Opacity="0.7"/>
-            </ListView.Background>
-            <ListView.Style>
-                <Style TargetType="{x:Type ListView}">
-                    <Style.Triggers>
-                        <EventTrigger RoutedEvent="Loaded">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Duration="0:0:1" Storyboard.TargetProperty="Opacity" From="0" To="0.7"/> 
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ListView.Style>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="{StaticResource VS2012WindowBorderBrush}"
-                            BorderThickness="1"
-                            Margin="10">
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Frame Grid.Row="0" Name="MainFrame"/>
 
         <StatusBar Grid.Row="2" Background="{StaticResource TitleBarBackgroundBrush}" Opacity="0.7" Margin="0 10 0 0">
             <TextBlock FontSize="16" Foreground="DimGray">Ready</TextBlock>
@@ -134,4 +72,5 @@
         </StatusBar>
 
     </Grid>
+    
 </Window>

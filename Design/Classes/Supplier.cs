@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Design.Classes
 {
-    class Supplier
+    public class Supplier
     {
         public float price { get; set; }
         public string amount { get; set; }
