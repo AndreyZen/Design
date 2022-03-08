@@ -8,7 +8,7 @@ namespace Design.Classes
 {
     public class Supplier
     {
-        public float price { get; set; }
+        public float? price { get; set; }
         public string amount { get; set; }
         public string date_publish { get; set; }
         public string company { get; set; }
@@ -18,7 +18,7 @@ namespace Design.Classes
         public string kpp { get; set; }
         public string okpo { get; set; }
         public string register_date { get; set; }
-        public int rating { get; set; }
+        public int? rating { get; set; }
         public string address { get; set; }
         public string kapital { get; set; }
         public string fin_info { get; set; }
@@ -28,6 +28,9 @@ namespace Design.Classes
         public string email { get; set; }
         public object web_site { get; set; }
 
-        public string price_text => $"{Math.Round(price, 5)}";
+        public string price_text => price.HasValue ? $"{Math.Round(price.Value, 5)}" : "Не указана";
+
+        public int advantages_count => advantages?.Split(';').Length ?? 0;
+        public int disadvantages_count => disadvantages?.Split(';').Length ?? 0;
     }
 }

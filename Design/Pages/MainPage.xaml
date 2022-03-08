@@ -50,14 +50,12 @@
                  Tag="Поиск: "
                  Style="{StaticResource placeHolder}" 
                  BorderBrush="{StaticResource VS2012WindowBorderBrushInactive}"
-                 FontSize="18"
-                 DockPanel.Dock="Top">
-                <TextBox.Background>
-                    <SolidColorBrush Color="#EFEFF2" Opacity="0.7"/>
-                </TextBox.Background>
-            </TextBox>
-
-            <ListView FontSize="18" Margin="0 10 0 0" Foreground="DimGray" AllowDrop="True" Name="Lv">
+                 FontSize="18" DockPanel.Dock="Top" x:Name="TBoxSearch" KeyDown="TBoxSearch_KeyDown">
+                    <TextBox.Background>
+                        <SolidColorBrush Color="#EFEFF2" Opacity="0.7"/>
+                    </TextBox.Background>
+                </TextBox>
+                <ListView FontSize="18" Margin="0 10 0 0" Foreground="DimGray" AllowDrop="True" Name="Lv">
                 <ListView.Background>
                     <SolidColorBrush Color="#EFEFF2" Opacity="0.7"/>
                 </ListView.Background>
