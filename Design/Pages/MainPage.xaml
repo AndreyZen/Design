@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Design.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MainPage">
+      Title="iSeals">
 
     <Grid>
         <Grid.RowDefinitions>
