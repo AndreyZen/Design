@@ -59,6 +59,7 @@ namespace Design.Pages
 
         private void Lv_Selected(object sender, RoutedEventArgs e)
         {
+
         }
     }
 }
