@@ -20,6 +20,19 @@
     </Page.Resources>
 
     <Grid Name="GridDetail">
+        <Grid.Style>
+            <Style TargetType="{x:Type Grid}">
+                <Style.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.5" From="0" To="1" Storyboard.TargetProperty="Opacity"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -30,7 +43,7 @@
 
         <Border Margin="10" Padding="10">
             <DockPanel>
-                <Button Foreground="DimGray" Content="Назад" FontSize="18" DockPanel.Dock="Left" HorizontalAlignment="Left" Padding="10 0"/>
+                <Button Click="Button_Click" Foreground="DimGray" Content="Назад" FontSize="18" DockPanel.Dock="Left" HorizontalAlignment="Left" Padding="10 0" Height="26" VerticalAlignment="Top"/>
                 <TextBlock FontSize="18" DockPanel.Dock="Left" Text="Компания" Margin="10 0" FontWeight="Bold"/>
                 <TextBlock TextAlignment="Right" FontSize="18" Text="Рейтин" Margin="10 0" DockPanel.Dock="Right" FontWeight="Bold"/>
             </DockPanel>

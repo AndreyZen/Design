@@ -26,5 +26,10 @@ namespace Design.Pages
             InitializeComponent();
             GridDetail.DataContext = supplier;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AppData.MainFrame.GoBack();
+        }
     }
 }
