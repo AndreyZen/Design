@@ -21,6 +21,7 @@ namespace Design.Pages
     /// </summary>
     public partial class MainPage : Page
     {
+        private ListViewItem draggedItem;
         public MainPage()
         {
             InitializeComponent();
@@ -50,11 +51,20 @@ namespace Design.Pages
 
         private void Lv_Drop(object sender, DragEventArgs e)
         {
+            var lvitem = (sender as ListViewItem);
+            var index = Lv.Items.IndexOf(lvitem);
+            Lv.Items.Remove(draggedItem);
+            Lv.Items.Insert(index, draggedItem);
+
         }
 
         private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            var grid = (sender as Grid);
+            draggedItem = grid.Parent as ListViewItem;
+            var text = (grid.Children[grid.Children.Count - 1] as TextBlock).Text;
+            DragDrop.DoDragDrop(grid, text, DragDropEffects.Move);
+            
         }
 
         private void Lv_Selected(object sender, RoutedEventArgs e)

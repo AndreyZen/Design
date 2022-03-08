@@ -57,30 +57,48 @@
                 </TextBox.Background>
             </TextBox>
 
-            <ListView FontSize="18" Margin="0 10 0 0" Foreground="DimGray" Drop="Lv_Drop" AllowDrop="True" Name="Lv" >
+            <ListView FontSize="18" Margin="0 10 0 0" Foreground="DimGray" AllowDrop="True" Name="Lv">
                 <ListView.Background>
                     <SolidColorBrush Color="#EFEFF2" Opacity="0.7"/>
                 </ListView.Background>
-                <ListViewItem>
-                    <StackPanel Orientation="Horizontal" MouseDown="StackPanel_MouseDown">
-                        <TextBlock Text="Цена: " />
-                        <TextBox Tag="Цена от: "  Width="150"/>
-                    </StackPanel>
+                <ListViewItem Drop="Lv_Drop">
+                    <Grid Background="White" MouseDown="StackPanel_MouseDown">
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Text="Цена: " />
+                            <TextBox Tag="Цена от: "  Width="150"/>
+                        </StackPanel>
+                        <TextBlock Text="0" Visibility="Hidden"/>
+                    </Grid>
                 </ListViewItem>
-                <ListViewItem >
-                    <TextBlock Text="Дата регистрации" MouseDown="StackPanel_MouseDown" />
+                <ListViewItem Drop="Lv_Drop">
+                    <Grid Background="White" MouseDown="StackPanel_MouseDown">
+                        <TextBlock Text="Дата регистрации" />
+                        <TextBlock Text="1" Visibility="Hidden"/>
+                    </Grid>
                 </ListViewItem>
-                <ListViewItem >
-                    <TextBlock MouseDown="StackPanel_MouseDown"  Text="Рейтинг"/>
+                <ListViewItem Drop="Lv_Drop">
+                    <Grid Background="White" MouseDown="StackPanel_MouseDown">
+                        <TextBlock  Text="Рейтинг" />
+                        <TextBlock Text="2" Visibility="Hidden"/>
+                    </Grid>
                 </ListViewItem>
-                <ListViewItem >
-                    <TextBlock MouseLeftButtonDown="StackPanel_MouseDown" Text="Выручка"/>
+                <ListViewItem Drop="Lv_Drop">
+                    <Grid Background="White" MouseDown="StackPanel_MouseDown">
+                        <TextBlock  Text="Выручка"/>
+                        <TextBlock Text="3" Visibility="Hidden"/>
+                    </Grid>
                 </ListViewItem>
-                <ListViewItem >
-                    <TextBlock Text="Плюсы" MouseDown="StackPanel_MouseDown" />
+                <ListViewItem Drop="Lv_Drop">
+                    <Grid Background="White" MouseDown="StackPanel_MouseDown">
+                        <TextBlock Text="Плюсы" />
+                        <TextBlock Text="4" Visibility="Hidden"/>
+                    </Grid>
                 </ListViewItem>
-                <ListViewItem >
-                    <TextBlock MouseDown="StackPanel_MouseDown"  Text="Недостатки"/>
+                <ListViewItem Drop="Lv_Drop">
+                    <Grid Background="White" MouseDown="StackPanel_MouseDown">
+                        <TextBlock Text="Недостатки"/>
+                        <TextBlock Text="5" Visibility="Hidden"/>
+                    </Grid>
                 </ListViewItem>
 
             </ListView>
