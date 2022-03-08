@@ -69,7 +69,10 @@ namespace Design.Pages
 
         private void Lv_Selected(object sender, RoutedEventArgs e)
         {
-            AppData.MainFrame.Navigate(new DetailPage(new Supplier()));
+            var sup = LvItems.SelectedItem as Supplier;
+            if(sup != null)
+                AppData.MainFrame.Navigate(new DetailPage(sup));
+            LvItems.SelectedItem = null;
         }
     }
 }

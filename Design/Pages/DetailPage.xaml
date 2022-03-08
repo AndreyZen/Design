@@ -44,8 +44,8 @@
         <Border Margin="10" Padding="10">
             <DockPanel>
                 <Button Click="Button_Click" Foreground="DimGray" Content="Назад" FontSize="18" DockPanel.Dock="Left" HorizontalAlignment="Left" Padding="10 0" Height="26" VerticalAlignment="Top"/>
-                <TextBlock FontSize="18" DockPanel.Dock="Left" Text="Компания" Margin="10 0" FontWeight="Bold"/>
-                <TextBlock TextAlignment="Right" FontSize="18" Text="Рейтин" Margin="10 0" DockPanel.Dock="Right" FontWeight="Bold"/>
+                <TextBlock FontSize="18" DockPanel.Dock="Left" Text="{Binding company, StringFormat='Компания: {0}'}" Margin="10 0" FontWeight="Bold"/>
+                <TextBlock TextAlignment="Right" FontSize="18" Text="{Binding rating, StringFormat='Рейтинг: {0}'}" Margin="10 0" DockPanel.Dock="Right" FontWeight="Bold"/>
             </DockPanel>
         </Border>
 
@@ -69,37 +69,37 @@
                         <TextBlock Text="Юр. лицо" FontWeight="Bold" FontSize="14"/>
                         <StackPanel Orientation="Horizontal" Margin="5 0">
                             <TextBlock Text="ИНН: " FontSize="14"/>
-                            <TextBlock Text="1294174128" FontSize="14"/>
+                            <TextBlock Text="{Binding inn}" FontSize="14"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="5 0"> 
                             <TextBlock Text="ОГРН: " FontSize="14"/>
-                            <TextBlock Text="1117746211197" FontSize="14"/>
+                            <TextBlock Text="{Binding ogrn}" FontSize="14"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="5 0">
                             <TextBlock Text="КПП: " FontSize="14"/>
-                            <TextBlock Text="770201001" FontSize="14"/>
+                            <TextBlock Text="{Binding kpp}" FontSize="14"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="5 0">
                             <TextBlock Text="ОКПО: " FontSize="14"/>
-                            <TextBlock Text="90648710" FontSize="14"/>
+                            <TextBlock Text="{Binding okpo}" FontSize="14"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="5 0">
                             <TextBlock Text="Дата регистрации: " FontSize="14"/>
-                            <TextBlock Text="28.02.2022 12:28" FontSize="14"/>
+                            <TextBlock Text="{Binding register_date}" FontSize="14"/>
                         </StackPanel>
                     </StackPanel>
                     
                     <StackPanel>
                         <TextBlock Text="Количество" FontWeight="Bold" FontSize="14"/>
                         <StackPanel Orientation="Horizontal" Margin="5 0">
-                            <TextBlock Text="Количество не указано" FontSize="14"/>
+                            <TextBlock Text="{Binding amount}" FontSize="14"/>
                         </StackPanel>
                     </StackPanel>
                     
                     <StackPanel>
                         <TextBlock Text="Дата публикации" FontWeight="Bold" FontSize="14"/>
                         <StackPanel Orientation="Horizontal" Margin="5 0">
-                            <TextBlock Text="28.02.2022 12:28" FontSize="14"/>
+                            <TextBlock Text="{Binding date_publish}" FontSize="14"/>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
@@ -108,14 +108,14 @@
                     <StackPanel>
                         <TextBlock Text="Цена" FontWeight="Bold" FontSize="14"/>
                         <StackPanel Orientation="Horizontal" Margin="5 0">
-                            <TextBlock Text="14877207.31" FontSize="14"/>
+                            <TextBlock Text="{Binding price_text}" FontSize="14"/>
                         </StackPanel>
                     </StackPanel>
 
                     <StackPanel>
                         <TextBlock Text="Финансовая информация" FontWeight="Bold" FontSize="14"/>
                         <StackPanel Orientation="Horizontal" Margin="5 0">
-                            <TextBlock Text="Выручка:выросла до5,5 млрд руб.34%" FontSize="14"/>
+                            <TextBlock Text="{Binding fin_info}" FontSize="14"/>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
@@ -135,19 +135,51 @@
                 <StackPanel Orientation="Vertical" Grid.Row="1" Margin="10">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="&#xE717;" FontFamily="Segoe MDL2 Assets" FontSize="18"/>
-                        <TextBlock Text="Телефон" FontSize="14" Margin="5 0"/>
+                        <TextBlock FontSize="14" Margin="5 0">
+                            <TextBlock.Text>
+                                <Binding Path="phone" StringFormat="Телефон: {0}">
+                                    <Binding.TargetNullValue>
+                                        Телефон: отсутствует
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </TextBlock.Text>
+                        </TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 5">
                         <TextBlock Text="&#xE707;" FontFamily="Segoe MDL2 Assets" FontSize="18"/>
-                        <TextBlock Text="Адрес" FontSize="14" Margin="5 0"/>
+                        <TextBlock  FontSize="14" Margin="5 0">
+                            <TextBlock.Text>
+                                <Binding Path="address" StringFormat="Адрес: {0}">
+                                    <Binding.TargetNullValue>
+                                        Адрес: отсутствует
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </TextBlock.Text>
+                        </TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="&#xE715;" FontFamily="Segoe MDL2 Assets" FontSize="18"/>
-                        <TextBlock Text="Почта" FontSize="14" Margin="5 0"/>
+                        <TextBlock FontSize="14" Margin="5 0">
+                            <TextBlock.Text>
+                                <Binding Path="email" StringFormat="Почта: {0}">
+                                    <Binding.TargetNullValue>
+                                        Почта: отсутствует
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </TextBlock.Text>
+                        </TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 5">
                         <TextBlock Text="&#xE774;" FontFamily="Segoe MDL2 Assets" FontSize="18"/>
-                        <TextBlock Text="Сайт" FontSize="14" Margin="5 0"/>
+                        <TextBlock FontSize="14" Margin="5 0">
+                            <TextBlock.Text>
+                                <Binding Path="web_site" StringFormat="Сайт: {0}">
+                                    <Binding.TargetNullValue>
+                                        Сайт: отсутствует
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </TextBlock.Text>
+                        </TextBlock>
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -167,8 +199,15 @@
                     Margin="10 0 10 10"
                     FontSize="14"
                     Grid.Row="1"
-                    TextWrapping="Wrap"
-                    Text="Долгое время работы; Большой уставный капитал; Не входит в реестр недобросовестных поставщиков; Нет связей с дисквалифицированными лицами; Нет массовых руководителей и учредителей; Нет сообщений о банкротстве; Прибыль в прошлом отчетном периоде; Уплачены налоги за прошлый отчетный период; Нет долгов по исполнительным производствам; Высокая среднесписочная численность работников;"/>
+                    TextWrapping="Wrap">
+                    <TextBlock.Text>
+                        <Binding Path="advantages">
+                            <Binding.TargetNullValue>
+                                Информация отсутствует
+                            </Binding.TargetNullValue>
+                        </Binding>
+                    </TextBlock.Text>
+                </TextBlock>
             </Grid>
         </Border>
         
@@ -187,7 +226,15 @@
                     FontSize="14"
                     Grid.Row="1"
                     TextWrapping="Wrap"
-                    Text="Нет"/>
+                    >
+                    <TextBlock.Text>
+                        <Binding Path="disadvantages">
+                            <Binding.TargetNullValue>
+                                Информация отсутствует
+                            </Binding.TargetNullValue>
+                        </Binding>
+                    </TextBlock.Text>
+                </TextBlock>
             </Grid>
         </Border>
     </Grid>

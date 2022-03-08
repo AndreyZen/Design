@@ -23,8 +23,11 @@ namespace Design.Classes
         public string kapital { get; set; }
         public string fin_info { get; set; }
         public string advantages { get; set; }
+        public string disadvantages { get; set; }
         public object phone { get; set; }
         public string email { get; set; }
         public object web_site { get; set; }
+
+        public string price_text => $"{Math.Round(price, 5)}";
     }
 }

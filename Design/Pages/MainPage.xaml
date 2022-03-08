@@ -68,6 +68,7 @@
                             <TextBox Margin="10 0" Style="{StaticResource placeHolder}" Tag="От: "  Width="150"/>
                             <TextBox Margin="10 0" Style="{StaticResource placeHolder}" Tag="До: "  Width="150"/>
                         </StackPanel>
+                        <TextBlock Text="0" Visibility="Hidden"/>
                     </Grid>
                 </ListViewItem>
                 <ListViewItem Drop="Lv_Drop">
@@ -129,6 +130,7 @@
                     <Border BorderBrush="{StaticResource VS2012WindowBorderBrush}"
                             BorderThickness="1"
                             Margin="10">
+                        <TextBlock Text="{Binding company}"/>
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
