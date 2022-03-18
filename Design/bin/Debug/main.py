@@ -1,14 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
 import random
-from fake_useragent import UserAgent
 import json
 
-ua = UserAgent()
 
 main_info = []
 headers = {
-    'user-agent': ua.random}
+    'user-agent': "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Mobile Safari/537.36"}
 
 info = []
 

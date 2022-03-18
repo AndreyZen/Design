@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Design"
         mc:Ignorable="d"
-        Title="MainWindow" Icon="Recources/image.ico" Height="450" Width="800" ResizeMode="CanResizeWithGrip" Style="{StaticResource VS2012WindowStyle}" ContentRendered="Window_ContentRendered">
+        Title="iSeals" Icon="Recources/image.ico" MinHeight="450" MinWidth="800" ResizeMode="CanResizeWithGrip" Style="{StaticResource VS2012WindowStyle}" ContentRendered="Window_ContentRendered">
     <Window.Background>
         <ImageBrush ImageSource="Recources/Bak.jpg"/>
     </Window.Background>
@@ -63,7 +63,7 @@
         </Grid.RowDefinitions>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" BorderThickness="0">
-        <Frame Grid.Row="0" Name="MainFrame" NavigationUIVisibility="Hidden" />
+            <Frame Grid.Row="0" Name="MainFrame" NavigationUIVisibility="Hidden" />
         </ScrollViewer>
 
         <StatusBar Grid.Row="2" Background="{StaticResource TitleBarBackgroundBrush}" Opacity="0.7">
@@ -74,5 +74,5 @@
         </StatusBar>
 
     </Grid>
-    
+
 </Window>

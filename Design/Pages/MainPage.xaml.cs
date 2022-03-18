@@ -98,7 +98,7 @@ namespace Design.Pages
                 engine.ExecuteFile("main.py", scope);
                 dynamic square = scope.GetVariable("main");
                 // вызываем функцию и получаем результат
-                dynamic result = square(text);
+             dynamic result = square(text);
 
                 properties.Clear();
                 var lvItems = Lv.Items;
@@ -118,7 +118,20 @@ namespace Design.Pages
                     .ThenBy(p => p.GetType().GetProperty(GetPropByID(properties[3])).GetValue(p))
                     .ThenBy(p => p.GetType().GetProperty(GetPropByID(properties[4])).GetValue(p))
                     .ThenBy(p => p.GetType().GetProperty(GetPropByID(properties[5])).GetValue(p)).ToList();
-
+                try
+                {
+                    if (!string.IsNullOrWhiteSpace(TboxPriceUp.Text))
+                        list = list.Where(x => x.price.HasValue ? (x.price.Value >= Convert.ToSingle(TboxPriceUp.Text)) : true).ToList();
+                    if (!string.IsNullOrWhiteSpace(TboxPriceDown.Text))
+                        list = list.Where(x => x.price.HasValue ? x.price.Value <= Convert.ToSingle(TboxPriceDown.Text) : true).ToList();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Произошла ошибка: Неправильное заполнение полей!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
+                
+                LvItems.ItemsSource = list;
             }
         }
         private string GetPropByID(int id)

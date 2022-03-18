@@ -63,8 +63,8 @@
                     <Grid Background="White" MouseDown="StackPanel_MouseDown">
                         <StackPanel Orientation="Horizontal" >
                             <TextBlock Text="Цена: " />
-                            <TextBox Margin="10 0" Style="{StaticResource placeHolder}" Tag="От: "  Width="150"/>
-                            <TextBox Margin="10 0" Style="{StaticResource placeHolder}" Tag="До: "  Width="150"/>
+                            <TextBox Margin="10 0" Style="{StaticResource placeHolder}" Tag="От: "  Width="150" x:Name="TboxPriceDown"/>
+                            <TextBox Margin="10 0" Style="{StaticResource placeHolder}" Tag="До: "  Width="150" x:Name="TboxPriceUp"/>
                         </StackPanel>
                         <TextBlock Text="0" Visibility="Hidden"/>
                     </Grid>
