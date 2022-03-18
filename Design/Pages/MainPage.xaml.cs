@@ -100,6 +100,9 @@ namespace Design.Pages
                 // вызываем функцию и получаем результат
              dynamic result = square(text);
 
+
+
+
                 properties.Clear();
                 var lvItems = Lv.Items;
                 for (int i = 0; i < lvItems.Count; i++)

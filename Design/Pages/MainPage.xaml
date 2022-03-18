@@ -102,7 +102,7 @@
 
             </ListView>
         </DockPanel>
-
+        
         <ListView Grid.Row="1"
                   Margin="10 0"
                   Name="LvItems"
