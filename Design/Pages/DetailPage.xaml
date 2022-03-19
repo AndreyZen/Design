@@ -45,7 +45,7 @@
 
         <Border Margin="10" Padding="10">
             <DockPanel>
-                <Button Click="Button_Click" Foreground="DimGray" Content="Назад" FontSize="18" DockPanel.Dock="Left" HorizontalAlignment="Left" Padding="10 0" Height="26" VerticalAlignment="Top"/>
+                <Button Click="Button_Click" Foreground="DimGray" Content="Назад" FontSize="18" DockPanel.Dock="Left" HorizontalAlignment="Left" Padding="10 0" Height="26" VerticalAlignment="Top" Style="{StaticResource backBtn}"/>
                 <TextBlock FontSize="18" DockPanel.Dock="Left" Text="{Binding company, StringFormat='Компания: {0}'}" Margin="10 0" FontWeight="Bold"/>
                 <TextBlock TextAlignment="Right" FontSize="18" Text="{Binding rating, StringFormat='Рейтинг: {0}'}" Margin="10 0" DockPanel.Dock="Right" FontWeight="Bold"/>
             </DockPanel>

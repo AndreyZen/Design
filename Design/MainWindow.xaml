@@ -67,7 +67,7 @@
         </ScrollViewer>
 
         <StatusBar Grid.Row="2" Background="{StaticResource TitleBarBackgroundBrush}" Opacity="0.7">
-            <TextBlock FontSize="16" Foreground="DimGray">Ready</TextBlock>
+            <TextBlock FontSize="16" Foreground="DimGray" x:Name="TBoxState">Ready</TextBlock>
             <StatusBarItem HorizontalAlignment="Right">
                 <ResizeGrip Foreground="DimGray"/>
             </StatusBarItem>

@@ -55,11 +55,11 @@
                         <SolidColorBrush Color="#EFEFF2" Opacity="0.7"/>
                     </TextBox.Background>
                 </TextBox>
-                <ListView FontSize="18" Margin="0 10 0 0" Foreground="DimGray" AllowDrop="True" Name="Lv">
+                <ListView FontSize="18" Margin="0 10 0 0" Foreground="DimGray" AllowDrop="True" Name="LViewProperties">
                 <ListView.Background>
                     <SolidColorBrush Color="#EFEFF2" Opacity="0.7"/>
                 </ListView.Background>
-                <ListViewItem Drop="Lv_Drop">
+                <ListViewItem Drop="LViewProperties_Drop">
                     <Grid Background="White" MouseDown="StackPanel_MouseDown">
                         <StackPanel Orientation="Horizontal" >
                             <TextBlock Text="Цена: " />
@@ -69,31 +69,31 @@
                         <TextBlock Text="0" Visibility="Hidden"/>
                     </Grid>
                 </ListViewItem>
-                <ListViewItem Drop="Lv_Drop">
+                <ListViewItem Drop="LViewProperties_Drop">
                     <Grid Background="White" MouseDown="StackPanel_MouseDown">
                         <TextBlock Text="Дата регистрации" />
                         <TextBlock Text="1" Visibility="Hidden"/>
                     </Grid>
                 </ListViewItem>
-                <ListViewItem Drop="Lv_Drop">
+                <ListViewItem Drop="LViewProperties_Drop">
                     <Grid Background="White" MouseDown="StackPanel_MouseDown">
                         <TextBlock  Text="Рейтинг" />
                         <TextBlock Text="2" Visibility="Hidden"/>
                     </Grid>
                 </ListViewItem>
-                <ListViewItem Drop="Lv_Drop">
+                <ListViewItem Drop="LViewProperties_Drop">
                     <Grid Background="White" MouseDown="StackPanel_MouseDown">
                         <TextBlock  Text="Выручка"/>
                         <TextBlock Text="3" Visibility="Hidden"/>
                     </Grid>
                 </ListViewItem>
-                <ListViewItem Drop="Lv_Drop">
+                <ListViewItem Drop="LViewProperties_Drop">
                     <Grid Background="White" MouseDown="StackPanel_MouseDown">
                         <TextBlock Text="Плюсы" />
                         <TextBlock Text="4" Visibility="Hidden"/>
                     </Grid>
                 </ListViewItem>
-                <ListViewItem Drop="Lv_Drop">
+                <ListViewItem Drop="LViewProperties_Drop">
                     <Grid Background="White" MouseDown="StackPanel_MouseDown">
                         <TextBlock Text="Недостатки"/>
                         <TextBlock Text="5" Visibility="Hidden"/>
@@ -102,37 +102,45 @@
 
             </ListView>
         </DockPanel>
-        
+
+        <!--
         <ListView Grid.Row="1"
                   Margin="10 0"
                   Name="LvItems"
                   SelectionChanged="Lv_Selected">
-            <ListView.Background>
-                <SolidColorBrush Color="#EFEFF2" Opacity="0.7"/>
-            </ListView.Background>
-            <ListView.Style>
-                <Style TargetType="{x:Type ListView}">
-                    <Style.Triggers>
-                        <EventTrigger RoutedEvent="Loaded">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Duration="0:0:1" Storyboard.TargetProperty="Opacity" From="0" To="0.7"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ListView.Style>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="{StaticResource VS2012WindowBorderBrush}"
+                    <ListView.Background>
+                        <SolidColorBrush Color="#EFEFF2" Opacity="0.7"/>
+                    </ListView.Background>
+                    <ListView.Style>
+                        <Style TargetType="{x:Type ListView}">
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0:0:1" Storyboard.TargetProperty="Opacity" From="0" To="0.7"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.Style>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="{StaticResource VS2012WindowBorderBrush}"
                             BorderThickness="1"
                             Margin="10">
-                        <TextBlock Text="{Binding company}"/>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                <TextBlock Text="{Binding company}"/>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+        -->
+        <TabControl Grid.Row="1" x:Name="SearchTabControl" Margin="10 0">
+            <TabControl.Background>
+                <SolidColorBrush Color="#EFEFF2" Opacity="0.7"/>
+            </TabControl.Background>
+        </TabControl>
+
 
 
     </Grid>

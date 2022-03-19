@@ -1,19 +1,25 @@
 import requests
 from bs4 import BeautifulSoup
 import random
+# from fake_useragent import UserAgent
 import json
 
+# ua = UserAgent()
 
 main_info = []
 headers = {
-    'user-agent': "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Mobile Safari/537.36"}
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'}
 
 info = []
 
+proxies = {
+    'http': "http://85.26.146.169:80"
+}
 
-def parse_company(company):
+
+def parse_company(company, amount_sum_lots):
     url = 'https://checko.ru/search?query=' + company
-    response = requests.get(url, headers=headers).text
+    response = requests.get(url, headers=headers, verify=False).text
     soup = BeautifulSoup(response, 'html.parser')
     inn = company
     ogrn = soup.find('strong', id='copy-ogrn').get_text(strip=True)
@@ -84,6 +90,7 @@ def parse_company(company):
         'ogrn': ogrn,
         'kpp': kpp,
         'okpo': okpo,
+        'amount_sum_lots': amount_sum_lots,
         'register_date': register_date,
         'rating': rating,
         'address': address,
@@ -150,12 +157,18 @@ def get_data(url):
 
 
 def get_company_url(company_url):
-    response = requests.get(company_url, headers=headers)
+    response = requests.get(company_url, headers=headers, proxies=proxies)
     response_text = response.text
     soup = BeautifulSoup(response_text, 'html.parser')
     tds = soup.find('table', class_='table').find_all('td')
+    company_id = company_url.split('/')[-2]
+    response = requests.get('https://www.b2b-center.ru/market/list.html?type=3&archive=1&firm_id=' + company_id, headers=headers,
+                 proxies=proxies)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    amount_sum_lots = soup.find_all('b')[1].parent.get_text(strip=True)
+
     global checko_info
-    checko_info = parse_company(tds[find_inn(tds) + 1].get_text(strip=True))
+    checko_info = parse_company(tds[find_inn(tds) + 1].get_text(strip=True), amount_sum_lots)
 
 
 def find_inn(array):
@@ -191,5 +204,7 @@ def main(need):
     # loop = asyncio.get_event_loop()
     gather_data(need)
 
+
 # if __name__ == "__main__":
 #     main()
+

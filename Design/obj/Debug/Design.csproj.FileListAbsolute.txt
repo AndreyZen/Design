@@ -96,3 +96,7 @@ C:\Users\Student20\Source\Repos\iSeals\Design\obj\Debug\Design.exe
 C:\Users\Student20\Source\Repos\iSeals\Design\obj\Debug\Design.pdb
 C:\Users\Student20\Source\Repos\iSeals\Design\bin\Debug\WpfCharts.dll
 C:\Users\Student20\Source\Repos\iSeals\Design\bin\Debug\WpfCharts.pdb
+C:\Users\Student20\Source\Repos\iSeals\Design\obj\Debug\UserControls\SearchResponse.g.cs
+C:\Users\Student20\Source\Repos\iSeals\Design\obj\Debug\UserControls\SearchTab.g.cs
+C:\Users\Student20\Source\Repos\iSeals\Design\obj\Debug\UserControls\SearchResponse.baml
+C:\Users\Student20\Source\Repos\iSeals\Design\obj\Debug\UserControls\SearchTab.baml

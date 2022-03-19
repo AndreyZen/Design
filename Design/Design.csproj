@@ -97,7 +97,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\AppData.cs" />
+    <Compile Include="Classes\SearchRequest.cs" />
     <Compile Include="Classes\Supplier.cs" />
+    <Compile Include="Classes\TabBuilder.cs" />
     <Compile Include="Pages\DetailPage.xaml.cs">
       <DependentUpon>DetailPage.xaml</DependentUpon>
     </Compile>
@@ -105,6 +107,12 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Styles\VS2012\VS2012WindowStyle.cs" />
+    <Compile Include="UserControls\SearchResponse.xaml.cs">
+      <DependentUpon>SearchResponse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SearchTab.xaml.cs">
+      <DependentUpon>SearchTab.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -128,6 +136,14 @@
     <Page Include="Styles\VS2012\VS2012WindowStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SearchResponse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SearchTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -162,9 +178,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recources\Bak.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
