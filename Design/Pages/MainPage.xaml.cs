@@ -1,6 +1,7 @@
 ﻿using Design.Classes;
 using IronPython.Hosting;
 using Microsoft.Scripting.Hosting;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Design.Pages
 {
@@ -27,6 +29,8 @@ namespace Design.Pages
     {
         private ListViewItem draggedItem;
         private List<int> properties = new List<int>();
+        private string Path;
+        private List<string> lines;
         public MainPage()
         {
             InitializeComponent();
@@ -69,13 +73,13 @@ namespace Design.Pages
             draggedItem = grid.Parent as ListViewItem;
             var text = (grid.Children[grid.Children.Count - 1] as TextBlock).Text;
             DragDrop.DoDragDrop(grid, text, DragDropEffects.Move);
-            
+
         }
 
         private void Lv_Selected(object sender, RoutedEventArgs e)
         {
             var sup = LvItems.SelectedItem as Supplier;
-            if(sup != null)
+            if (sup != null)
                 AppData.MainFrame.Navigate(new DetailPage(sup));
             LvItems.SelectedItem = null;
         }
@@ -83,7 +87,7 @@ namespace Design.Pages
 
         private void TBoxSearch_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
 
                 string text = TBoxSearch.Text.Replace(" ", "+");
@@ -141,6 +145,64 @@ namespace Design.Pages
                     break;
             }
             return "";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Count = 0;
+            TBoxSearch.Clear();
+            lines = new List<string>();
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Excel Files|*.xlsx;*.xls;*.csv";
+            if (ofd.ShowDialog() == true)
+            {
+                lines = GetSuppliersExcel(ofd.FileName);
+            }
+        }
+
+        private Encoding GetFileEncoding(string path)
+        {
+            FileStream fs = new FileStream(path, FileMode.Open);
+            using (StreamReader sr = new StreamReader(fs, true))
+                return sr.CurrentEncoding;
+        }
+
+        private List<string> GetSuppliersExcel(string path)
+        {
+            List<string> lines = new List<string>();
+
+            Excel.Application ObjWorkExcel = new Excel.Application();
+            Excel.Workbook ObjWorkBook = ObjWorkExcel.Workbooks.Open(path);
+            Excel.Worksheet ObjworkSheet = (Excel.Worksheet)ObjWorkBook.Sheets[1];
+            var lastCell = ObjworkSheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell);
+            int lastColumn = (int)lastCell.Column;
+            int lastRow = (int)lastCell.Row;
+            for (int i = 1; i < lastRow - 1; i++)
+            {
+                string line = ObjworkSheet.Cells[i + 1, lastColumn - 1].Text.ToString();
+                lines.Add(line.Substring(1));
+            }
+            //for (int j=0; j < 5; j++)
+            //    for (int i=0; i < lastRow; i++)
+            // list[i, j] = ObjworkSheet.Cells[i + 1, j + 1].Text.ToString();
+            ObjWorkExcel.Quit();
+            GC.Collect();
+            return lines;
+        }
+
+        private int Count = 0;
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (Count < lines.Count)
+            {
+                TBoxSearch.Text = lines[Count];
+                Count++;
+            }
+            else
+            {
+                var btn = sender as Button;
+                btn.IsEnabled = false;
+            }
         }
     }
 }
