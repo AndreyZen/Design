@@ -22,16 +22,18 @@ namespace Design.UserControls
     /// </summary>
     public partial class SearchResponse : UserControl
     {
+       private List<Supplier> _suppliers = new List<Supplier>();
         public SearchResponse(List<Supplier> suppliers)
         {
             InitializeComponent();
             LvItems.ItemsSource = suppliers;
+            _suppliers = suppliers;
         }
         private void Lv_Selected(object sender, RoutedEventArgs e)
         {
             var sup = LvItems.SelectedItem as Supplier;
             if (sup != null)
-                AppData.MainFrame.Navigate(new DetailPage(sup));
+                AppData.MainFrame.Navigate(new DetailPage(sup, _suppliers));
             LvItems.SelectedItem = null;
         }
     }

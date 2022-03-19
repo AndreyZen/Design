@@ -99,6 +99,7 @@
     <Compile Include="Classes\AppData.cs" />
     <Compile Include="Classes\SearchRequest.cs" />
     <Compile Include="Classes\Supplier.cs" />
+    <Compile Include="Classes\SupplierPartial.cs" />
     <Compile Include="Classes\TabBuilder.cs" />
     <Compile Include="Pages\DetailPage.xaml.cs">
       <DependentUpon>DetailPage.xaml</DependentUpon>

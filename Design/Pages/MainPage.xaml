@@ -17,8 +17,7 @@
 
         <DockPanel
             Margin="10"
-            Height="25"
-            >
+            Height="25">
             <DockPanel.Style>
                 <Style TargetType="{x:Type DockPanel}">
                     <Style.Triggers>
@@ -59,42 +58,42 @@
                 <ListView.Background>
                     <SolidColorBrush Color="#EFEFF2" Opacity="0.7"/>
                 </ListView.Background>
-                <ListViewItem Drop="LViewProperties_Drop">
-                    <Grid Background="White" MouseDown="StackPanel_MouseDown">
+                <ListViewItem Drop="PropertyElement_Drop" PreviewMouseDown="PropertyElement_MouseDown">
+                    <Grid>
                         <StackPanel Orientation="Horizontal" >
                             <TextBlock Text="Цена: " />
-                            <TextBox Margin="10 0" Style="{StaticResource placeHolder}" Tag="От: "  Width="150" x:Name="TboxPriceDown"/>
-                            <TextBox Margin="10 0" Style="{StaticResource placeHolder}" Tag="До: "  Width="150" x:Name="TboxPriceUp"/>
+                            <TextBox Margin="10 0" Style="{StaticResource placeHolder}" Tag="От: "  Width="150" x:Name="TboxPriceDown" AllowDrop="False" />
+                            <TextBox Margin="10 0" Style="{StaticResource placeHolder}" Tag="До: "  Width="150" x:Name="TboxPriceUp" AllowDrop="False" />
                         </StackPanel>
                         <TextBlock Text="0" Visibility="Hidden"/>
                     </Grid>
                 </ListViewItem>
-                <ListViewItem Drop="LViewProperties_Drop">
-                    <Grid Background="White" MouseDown="StackPanel_MouseDown">
+                <ListViewItem Drop="PropertyElement_Drop" PreviewMouseDown="PropertyElement_MouseDown">
+                    <Grid>
                         <TextBlock Text="Дата регистрации" />
                         <TextBlock Text="1" Visibility="Hidden"/>
                     </Grid>
                 </ListViewItem>
-                <ListViewItem Drop="LViewProperties_Drop">
-                    <Grid Background="White" MouseDown="StackPanel_MouseDown">
+                <ListViewItem Drop="PropertyElement_Drop" PreviewMouseDown="PropertyElement_MouseDown">
+                    <Grid>
                         <TextBlock  Text="Рейтинг" />
                         <TextBlock Text="2" Visibility="Hidden"/>
                     </Grid>
                 </ListViewItem>
-                <ListViewItem Drop="LViewProperties_Drop">
-                    <Grid Background="White" MouseDown="StackPanel_MouseDown">
+                <ListViewItem Drop="PropertyElement_Drop" PreviewMouseDown="PropertyElement_MouseDown">
+                    <Grid>
                         <TextBlock  Text="Выручка"/>
                         <TextBlock Text="3" Visibility="Hidden"/>
                     </Grid>
                 </ListViewItem>
-                <ListViewItem Drop="LViewProperties_Drop">
-                    <Grid Background="White" MouseDown="StackPanel_MouseDown">
+                <ListViewItem Drop="PropertyElement_Drop" PreviewMouseDown="PropertyElement_MouseDown">
+                    <Grid>
                         <TextBlock Text="Плюсы" />
                         <TextBlock Text="4" Visibility="Hidden"/>
                     </Grid>
                 </ListViewItem>
-                <ListViewItem Drop="LViewProperties_Drop">
-                    <Grid Background="White" MouseDown="StackPanel_MouseDown">
+                <ListViewItem Drop="PropertyElement_Drop" PreviewMouseDown="PropertyElement_MouseDown">
+                    <Grid>
                         <TextBlock Text="Недостатки"/>
                         <TextBlock Text="5" Visibility="Hidden"/>
                     </Grid>
@@ -135,7 +134,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
         -->
-        <TabControl Grid.Row="1" x:Name="SearchTabControl" Margin="10 0">
+        <TabControl Grid.Row="1" x:Name="SearchTabControl" Margin="10 0 10 10">
             <TabControl.Background>
                 <SolidColorBrush Color="#EFEFF2" Opacity="0.7"/>
             </TabControl.Background>

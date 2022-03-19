@@ -1,25 +1,25 @@
 import requests
 from bs4 import BeautifulSoup
 import random
-# from fake_useragent import UserAgent
+from fake_useragent import UserAgent
 import json
 
-# ua = UserAgent()
+ua = UserAgent()
 
 main_info = []
-headers = {
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'}
 
 info = []
 
-proxies = {
-    'http': "http://85.26.146.169:80"
-}
-
+# proxies = {
+#     "http": "http://185.221.160.176:80",
+#     "https": "https://185.221.160.176:80"
+#
+# }
 
 def parse_company(company, amount_sum_lots):
     url = 'https://checko.ru/search?query=' + company
-    response = requests.get(url, headers=headers, verify=False).text
+    response = requests.get(url, headers={
+        'user-agent': ua.random}, verify=False).text
     soup = BeautifulSoup(response, 'html.parser')
     inn = company
     ogrn = soup.find('strong', id='copy-ogrn').get_text(strip=True)
@@ -114,7 +114,8 @@ def save(m_info, c_info):
 
 
 def get_data(url):
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers={
+        'user-agent': ua.random})
     response_text = response.text
     soup = BeautifulSoup(response_text, 'html.parser')
 
@@ -157,16 +158,17 @@ def get_data(url):
 
 
 def get_company_url(company_url):
-    response = requests.get(company_url, headers=headers, proxies=proxies)
+    response = requests.get(company_url, headers={
+        'user-agent': ua.random})
     response_text = response.text
     soup = BeautifulSoup(response_text, 'html.parser')
     tds = soup.find('table', class_='table').find_all('td')
     company_id = company_url.split('/')[-2]
-    response = requests.get('https://www.b2b-center.ru/market/list.html?type=3&archive=1&firm_id=' + company_id, headers=headers,
-                 proxies=proxies)
+    response = requests.get('https://www.b2b-center.ru/market/list.html?type=3&archive=1&firm_id=' + company_id,
+                            headers={
+                                'user-agent': ua.random})
     soup = BeautifulSoup(response.text, 'html.parser')
     amount_sum_lots = soup.find_all('b')[1].parent.get_text(strip=True)
-
     global checko_info
     checko_info = parse_company(tds[find_inn(tds) + 1].get_text(strip=True), amount_sum_lots)
 
@@ -179,7 +181,8 @@ def find_inn(array):
 
 def get_page_data(page, url):
     url += '&from=' + str((int(page) - 1) * 20)
-    response = requests.get(url=url, headers=headers).text
+    response = requests.get(url=url, headers={
+        'user-agent': ua.random}).text
     soup = BeautifulSoup(response, 'html.parser')
     for u in soup.find_all('a', class_='search-results-title visited'):
         link = 'https://www.b2b-center.ru' + u.get('href')
@@ -188,7 +191,8 @@ def get_page_data(page, url):
 
 def gather_data(need):
     url = 'https://www.b2b-center.ru/market/?f_keyword=' + need + '&trade=sell'
-    response = requests.get(url=url, headers=headers).text
+    response = requests.get(url=url, headers={
+        'user-agent': ua.random}).text
     soup = BeautifulSoup(response, 'html.parser')
     try:
         page_count = soup.find('ul', class_='pagi-list').find_all('li')[-1].find('a').get_text(strip=True)
@@ -201,7 +205,6 @@ def gather_data(need):
 
 
 def main(need):
-    # loop = asyncio.get_event_loop()
     gather_data(need)
 
 

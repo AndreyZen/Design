@@ -31,11 +31,13 @@ namespace Design.Pages
         public MainPage()
         {
             InitializeComponent();
-
-            SearchTabControl.Items.Add(TabBuilder.CreateTab("ёоу я хедер", new List<Supplier>() { new Supplier() { company = "ёоу я компания"} }, TabHeader_CloseButtonClicked));
+            DataObject.AddPastingHandler(TboxPriceDown, NoPaste);
+            DataObject.AddPastingHandler(TboxPriceUp, NoPaste);
+            DataObject.AddPastingHandler(TBoxSearch, NoPaste);
+            //SearchTabControl.Items.Add(TabBuilder.CreateTab("ёоу я хедер", new List<Supplier>() { new Supplier() { company = "ёоу я компания"} }, TabHeader_CloseButtonClicked));
         }
 
-        private void LViewProperties_Drop(object sender, DragEventArgs e)
+        private void PropertyElement_Drop(object sender, DragEventArgs e)
         {
             var lvitem = (sender as ListViewItem);
             var index = LViewProperties.Items.IndexOf(lvitem);
@@ -44,13 +46,16 @@ namespace Design.Pages
 
         }
 
-        private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        private void PropertyElement_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            var grid = (sender as Grid);
-            draggedItem = grid.Parent as ListViewItem;
-            var text = (grid.Children[grid.Children.Count - 1] as TextBlock).Text;
-            DragDrop.DoDragDrop(grid, text, DragDropEffects.Move);
-            
+            try
+            {
+                draggedItem = (sender as ListViewItem);
+                var grid = draggedItem.Content as Grid;
+                var text = (grid.Children[grid.Children.Count - 1] as TextBlock).Text;
+                DragDrop.DoDragDrop(grid, text, DragDropEffects.Move);
+            }
+            catch { }
         }
 
 
@@ -149,6 +154,11 @@ namespace Design.Pages
                     break;
             }
             return "";
+        }
+
+        private void NoPaste(object sender, DataObjectPastingEventArgs e)
+        {
+            e.CancelCommand();
         }
     }
 }

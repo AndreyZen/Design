@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Design.Classes
 {
-    public class Supplier
+    public partial class Supplier
     {
         public float? price { get; set; }
         public string amount { get; set; }
@@ -24,13 +24,10 @@ namespace Design.Classes
         public string fin_info { get; set; }
         public string advantages { get; set; }
         public string disadvantages { get; set; }
-        public object phone { get; set; }
+        public string phone { get; set; }
         public string email { get; set; }
-        public object web_site { get; set; }
+        public string amount_sum_lots { get; set; }
 
-        public string price_text => price.HasValue ? $"{Math.Round(price.Value, 5)}" : "Не указана";
 
-        public int advantages_count => advantages?.Split(';').Length ?? 0;
-        public int disadvantages_count => disadvantages?.Split(';').Length ?? 0;
     }
 }

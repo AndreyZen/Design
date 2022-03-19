@@ -24,16 +24,20 @@ namespace Design.Pages
     public partial class DetailPage : Page
     {
         private readonly Random random = new Random(1234);
-        public DetailPage(Supplier supplier)
+        private List<Supplier> _suppliers = new List<Supplier>();
+        private Supplier _supplier;
+        public DetailPage(Supplier supplier, List<Supplier> suppliers)
         {
             InitializeComponent();
             GridDetail.DataContext = supplier;
+            _supplier = supplier;
+            _suppliers = suppliers;
             Loaded += OnLoaded;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
-            Axes = new[] { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7" };
+            Axes = new[] { "Цена", "Количество тендеров", "Выручка", "Успешность" };
             ChartAnalytics.Axis = Axes;
 
             ChartAnalytics.Lines = new ObservableCollection<ChartLine> {
@@ -41,26 +45,24 @@ namespace Design.Pages
                                                                               LineColor = Colors.Red,
                                                                               FillColor = Color.FromArgb(128, 255, 0, 0),
                                                                               LineThickness = 2,
-                                                                              PointDataSource = GenerateRandomDataSet(Axes.Length),
-                                                                              Name = "Chart 1"
+                                                                              PointDataSource = new List<double> { (double)_suppliers.Average(x => x.price ?? 0) / _suppliers.Max(x => x.price.HasValue ? x.price.Value : 1),
+                                                                              (double)_suppliers.Average(x => x.tenders_count) / ((double)_suppliers.Max(x => x.tenders_count != 0 ? x.tenders_count : 1)),
+                                                                                  1,
+                                                                                  1 },
+                                                                              Name = "Среднее значение"
                                                                           },
                                                             new ChartLine {
                                                                               LineColor = Colors.Blue,
                                                                               FillColor = Color.FromArgb(128, 0, 0, 255),
                                                                               LineThickness = 2,
-                                                                              PointDataSource = GenerateRandomDataSet(Axes.Length),
-                                                                              Name = "Chart 2"
+                                                                              PointDataSource = new List<double> { 
+                                                                                  (double)(_supplier.price ?? 0.0) / _suppliers.Max(x => x.price.HasValue ? x.price.Value : 1),
+                                                                                  (double)_supplier.tenders_count / ((double)_suppliers.Max(x => x.tenders_count != 0 ? x.tenders_count : 1)),
+                                                                                  1,
+                                                                                  1 },
+                                                                              Name = "Значение поставщика"
                                                                           }
                                                         };
-        }
-        public List<double> GenerateRandomDataSet(int nmbrOfPoints)
-        {
-            var pts = new List<double>(nmbrOfPoints);
-            for (var i = 0; i < nmbrOfPoints; i++)
-            {
-                pts.Add(random.NextDouble());
-            }
-            return pts;
         }
 
         public string[] Axes { get; set; }

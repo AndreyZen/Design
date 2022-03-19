@@ -132,7 +132,8 @@
                                Ticks="5" 
                                ShowLegend="True" 
                                LegendLocation="BottomRight"
-                               LegendBackgroundColor="White" Background="Transparent">
+                               LegendBackgroundColor="White" Background="Transparent"
+                               >
                 
             </WpfCharts:SpiderChart>
         </Border>
@@ -214,15 +215,8 @@
                     Margin="10 0 10 10"
                     FontSize="14"
                     Grid.Row="1"
-                    TextWrapping="Wrap">
-                    <TextBlock.Text>
-                        <Binding Path="advantages">
-                            <Binding.TargetNullValue>
-                                Информация отсутствует
-                            </Binding.TargetNullValue>
-                        </Binding>
-                    </TextBlock.Text>
-                </TextBlock>
+                    TextWrapping="Wrap" Text="{Binding advantages_fromat}"/>
+
             </Grid>
         </Border>
         
@@ -241,15 +235,7 @@
                     FontSize="14"
                     Grid.Row="1"
                     TextWrapping="Wrap"
-                    >
-                    <TextBlock.Text>
-                        <Binding Path="disadvantages">
-                            <Binding.TargetNullValue>
-                                Информация отсутствует
-                            </Binding.TargetNullValue>
-                        </Binding>
-                    </TextBlock.Text>
-                </TextBlock>
+                    Text="{Binding disadvantages_fromat}"/>
             </Grid>
         </Border>
     </Grid>
